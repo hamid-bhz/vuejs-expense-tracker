@@ -7,3 +7,5 @@ export type Transaction = {
 export type Transactions = Transaction[]
 
 export type Balance = { balance: number }
+
+export type IncomeExpenses = { income: string; expenses: string }
