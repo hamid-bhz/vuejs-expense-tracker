@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 import type { Transactions } from './types'
 
@@ -13,13 +13,17 @@ const transactions = ref<Transactions>([
   { id: 1, text: 'Flower', amount: -19.99 },
   { id: 2, text: 'Book', amount: 299 }
 ])
+
+const total = computed(() =>
+  transactions.value.reduce((acc, transaction) => acc + transaction.amount, 0)
+)
 </script>
 
 <template>
   <Header />
 
   <main class="container">
-    <Balance />
+    <Balance :balance="total" />
     <IncomeExpenses />
     <TransactionList :transactions="transactions" />
     <AddTransaction />
